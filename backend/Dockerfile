@@ -12,7 +12,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # ENV PYTHONPATH=.
 
 # Expose the port 8000 in which our application runs
-EXPOSE 8000
+EXPOSE 80
 
 # set work directory
 WORKDIR  /app
@@ -35,7 +35,10 @@ RUN pip3 install --no-cache-dir -r /app/requirements.txt
 #     && rm -rf /root/.cache/pip
 
 # Copy everything from ./src directory to /app in the container
-COPY ./src . 
+COPY ./src ./src
 
 # Run the application in the port 8000
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "src.main:app", "--reload"]
+# If you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option --proxy-headers, this will tell Uvicorn to trust the headers sent by that proxy telling it that the application is running behind HTTPS, etc.
+# uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]

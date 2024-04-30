@@ -20,6 +20,11 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root():
+    return {"Hello": "World"}
+
+
 @app.get("/api/todos")
 def home():
     return [
