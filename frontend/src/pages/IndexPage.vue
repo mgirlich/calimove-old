@@ -13,7 +13,7 @@ import ExampleComponent from 'components/ExampleComponent.vue';
 
 const todos = ref<Todo[]>();
 
-axios.get('http://127.0.0.1:8000/api/todos')
+axios.get('http://34.242.51.123/api/todos')
   .then((resp) => {
     todos.value = resp.data;
   })
