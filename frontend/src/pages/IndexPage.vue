@@ -13,7 +13,7 @@ import ExampleComponent from 'components/ExampleComponent.vue';
 
 const todos = ref<Todo[]>();
 
-axios.get('http://34.242.51.123/api/todos')
+axios.get('https://ps1tsi9sp4.execute-api.eu-west-1.amazonaws.com/calimove/api/todos')
   .then((resp) => {
     todos.value = resp.data;
   })
